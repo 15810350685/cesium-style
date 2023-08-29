@@ -6,6 +6,7 @@
 <script setup>
 import { onMounted } from "vue";
 import { Viewer, Ion, Cartesian3, Color } from "cesium";
+import Cesium3DTile from "cesium/Source/Scene/Cesium3DTile";
 
 onMounted(() => {
   Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3OWQ0OWFlMi1jNmE3LTQ2NTUtYmQ3ZC1kMzA2MGNjYWIxMjQiLCJpZCI6MTYxOTExLCJpYXQiOjE2OTI3MDM2MzF9.-AxJTCmapUmGuGWsxa5KpLxpdctsZdwnJxK7baeoG1k"
@@ -32,9 +33,13 @@ onMounted(() => {
   const ellipse = viewer.entities.add({
     position: Cartesian3.fromDegrees(119, 30),
     ellipse: {
+      semiMajorAxis: 500, // 半长轴
+      semiMinorAxis: 400, // 半短轴
+      material: Color.YELLOWGREEN,
+      rotation: Math.PI / 2 // 选择角度
     }
   })
-  viewer.zoomTo(Box)
+  viewer.zoomTo(ellipse)
 })
 </script>
 <style scoped>

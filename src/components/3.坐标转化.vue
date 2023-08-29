@@ -5,13 +5,12 @@
 </template>
 <script setup>
 import { onMounted } from "vue";
-import { ref } from 'vue'
 import { Viewer, Ion, Cartesian3, Cartographic, Math } from "cesium";
 
 onMounted(() => {
   Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3OWQ0OWFlMi1jNmE3LTQ2NTUtYmQ3ZC1kMzA2MGNjYWIxMjQiLCJpZCI6MTYxOTExLCJpYXQiOjE2OTI3MDM2MzF9.-AxJTCmapUmGuGWsxa5KpLxpdctsZdwnJxK7baeoG1k"
   // viewer 是所有API的开始
-  const viewer = new Viewer("CesiumContainer", {
+  new Viewer("CesiumContainer", {
     timeline: false, // 时间轴控件
     animation: false, // 动画控件
     geocoder: false, // 搜索按钮

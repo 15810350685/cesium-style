@@ -5,7 +5,6 @@
 </template>
 <script setup>
 import { onMounted } from "vue";
-import { ref } from 'vue'
 import { Viewer, Ion, Cartesian3, Math } from "cesium";
 
 onMounted(() => {
@@ -20,6 +19,8 @@ onMounted(() => {
     baseLayerPicker: false, // 图层选择按钮
     navigationHelpButton: false, // 帮助手册按钮
     fullscreenButton: false, // 全屏按钮
+    infoBox: false, // 右侧信息框
+    selectionIndicator: false, // 隐藏选中状态
   });
   console.log("viewer", viewer)
   // setView 通过定义相机目的地（方向），直接跳转到目的地

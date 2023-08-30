@@ -7,22 +7,36 @@
 <script setup>
 import { onMounted } from "vue";
 import { Viewer, Ion, Cartesian3, Cartesian2, Color, Label } from "cesium";
-// import Color from "cesium/Source/Core/Color";
+import CallbackProperty from "cesium/Source/DataSources/CallbackProperty";
 const toDel = () => {
 }
 onMounted(() => {
   Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3OWQ0OWFlMi1jNmE3LTQ2NTUtYmQ3ZC1kMzA2MGNjYWIxMjQiLCJpZCI6MTYxOTExLCJpYXQiOjE2OTI3MDM2MzF9.-AxJTCmapUmGuGWsxa5KpLxpdctsZdwnJxK7baeoG1k"
-  // viewer 是所有API的开始
+  let lon, lat, num = 0
   const viewer = new Viewer("CesiumContainer", {});
-  console.log("viewer", viewer)
-  const point = viewer.entities.add({
-    position: Cartesian3.fromDegrees(121, 30),
-    point: {
-      color: Color.BLUE,
-      pixelSize: 20
+  const lint = viewer.entities.add({
+    // polyline: {
+    //   positions: Cartesian3.fromDegreesArray([120,30, 121,31]),
+    //   width: 5,
+    //   material: Color.YELLOW
+    // }
+    polyline: {
+      positions: new CallbackProperty(() => {
+        num += 0.005
+        lon = 120 + num
+        lat = 30 + num
+        if (lon < 121) {
+          return Cartesian3.fromDegreesArray([120,30, lon,lat])
+        } else {
+          // 给positions 赋值一个新的对象，要不然会一直循环
+          lint.polyline.positions = Cartesian3.fromDegreesArray([120,30, 121,31])
+        }
+      }, false), // 传false，不传动不起来
+      width: 5,
+      material: Color.YELLOW
     }
   })
-  viewer.zoomTo(point)
+  viewer.zoomTo(lint)
 })
 
 </script>

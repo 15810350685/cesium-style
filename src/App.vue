@@ -5,7 +5,7 @@
 </template>
 <script setup>
   // import * as Cesium from 'cesium'
-  import HelloCesium from './components/15.Entity实体-动态.vue'
+  import HelloCesium from './components/16.DataSources数据加载.vue'
 </script>
 <style scoped>
 .logo {
